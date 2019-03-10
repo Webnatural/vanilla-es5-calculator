@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <title>CalcApp</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+        </nav>
+    </header>
+
+    <main id="itech-calcapp-widget">
+        <noscript>Probably fallback to PHP</noscript>
+
+        <form class="calculator" id="widget-calculator">
+            <section class="output-display" role="presentation">
+                <input type="text" id="former-equation" class="former-equation-preview screen-display" />
+                <output for="former-equation" class="current-calculation-display screen-display"></output>
+            </section>
+            <section class="control-buttons">
+                <div class="row slight-bottom-shadow">
+                    <button type="reset" class="button func ac" accesskey="esc"
+                        aria-label="Resets all former and current operations">
+                        AC
+                    </button>
+                    <button type="button" class="button func double save" accesskey="s" value="Save"
+                        aria-label="Saves calculations to CSV file">
+                        Save
+                    </button>
+                    <button type="button" class="button operator" accesskey="/" value="/"
+                        aria-label="Division operator">
+                        ÷
+                    </button>
+                </div>
+                <div class="row slight-bottom-shadow">
+                    <button type="button" class="button decimal option" accesskey="." value="."
+                        aria-label="Appends decimal separator to current operand">
+                        .
+                    </button>
+                    <button type="button" class="button digit" accesskey="0" value="0" arial-label="Digit 0">
+                        0
+                    </button>
+                    <button type="button" class="button placeholder" value="" disabled>
+
+                    </button>
+                    <button type="button" class="button operator" accesskey="*" value="*"
+                        aria-label="Multiplication operator">
+                        ×
+                    </button>
+                </div>
+
+                <div class="row slight-bottom-shadow">
+                    <button type="button" class="button digit" accesskey="1" value="1" aria-label="Digit 1">
+                        1
+                    </button>
+                    <button type="button" class="button digit" accesskey="2" value="2" aria-label="Digit 2">
+                        2
+                    </button>
+                    <button type="button" class="button digit" accesskey="3" value="3" aria-label="Digit 3">
+                        3
+                    </button>
+                    <button type="button" class="button operator" accesskey="-" value="-"
+                        aria-label="Subtraction operator">
+                        -
+                    </button>
+                </div>
+                <div class="row slight-bottom-shadow">
+                    <button type="button" class="button digit" accesskey="4" value="4" aria-label="Digit 4">
+                        4
+                    </button>
+                    <button type="button" class="button digit" accesskey="5" value="5" aria-label="Digit 5">
+                        5
+                    </button>
+                    <button type="button" class="button digit" accesskey="6" value="6" aria-label="Digit 6">
+                        6
+                    </button>
+                    <button type="button" class="button operator" accesskey="+" value="+"
+                        aria-label="Addition operator">
+                        +
+                    </button>
+                </div>
+
+                <div class="row slight-bottom-shadow">
+                    <button type="button" class="button digit" accesskey="7" value="7" aria-label="Digit 7">
+                        7
+                    </button>
+                    <button type="button" class="button digit" accesskey="8" value="8" aria-label="Digit 8">
+                        8
+                    </button>
+                    <button type="button" class="button digit" accesskey="9" value="9" aria-label="Digit 9">
+                        9
+                    </button>
+                    <button type="button" class="button operator equals" accesskey="=" value="="
+                        aria-label="Equals operator running calculation of current equation">
+                        =
+                    </button>
+                </div>
+            </section>
+        </form>
+        <script src="index.js"></script>
+
+    </main>
+    <footer></footer>
+</body>
+
+</html>
