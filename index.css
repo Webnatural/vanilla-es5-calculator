@@ -1,0 +1,358 @@
+/* Document font */
+/* Document colors */
+/* Calculator colors */
+html {
+  font-size: 16px;
+}
+
+@media screen and (min-width: 320px) {
+  html {
+    font-size: calc(16px + 8 * ((100vw - 320px) / 880));
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  html {
+    font-size: 24px;
+  }
+}
+
+* {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Oxygen", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.output-display, .control-buttons, .calculator .row, button, button.double {
+  -webkit-transition: background-color .5s ease-out;
+  transition: background-color .5s ease-out;
+}
+
+.output-display:hover, .control-buttons:hover, .calculator .row:hover, button:hover {
+  -webkit-transition: background-color .2s ease-out;
+  transition: background-color .2s ease-out;
+}
+
+.output-display:active, .control-buttons:active, .calculator .row:active, button:active {
+  -webkit-transition: background-color 0s ease-out;
+  transition: background-color 0s ease-out;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #fff;
+  font-family: "Oxygen", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.calculator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-width: 261px;
+  min-height: 505px;
+  width: 45vh;
+  height: 90vh;
+}
+
+.output-display {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #29363b;
+  cursor: ponter;
+  overflow: hidden;
+  min-height: 180px;
+}
+
+.output-display:hover {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.output-display:active {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.output-display.clear {
+  -webkit-animation: clear .15s 3;
+          animation: clear .15s 3;
+}
+
+@-webkit-keyframes clear {
+  33% {
+    -webkit-transform: translateX(5px);
+            transform: translateX(5px);
+  }
+  66% {
+    -webkit-transform: translateX(-5px);
+            transform: translateX(-5px);
+  }
+}
+
+@keyframes clear {
+  33% {
+    -webkit-transform: translateX(5px);
+            transform: translateX(5px);
+  }
+  66% {
+    -webkit-transform: translateX(-5px);
+            transform: translateX(-5px);
+  }
+}
+
+.output-display {
+  font-size: 2em;
+  font-size: 10vmin;
+  font-weight: 400;
+  color: #fff;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.output-display .current-calculation-display {
+  width: 100%;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
+  -ms-flex-item-align: auto;
+      -ms-grid-row-align: auto;
+      align-self: auto;
+  color: #fff;
+  text-align: right;
+}
+
+.output-display .former-equation-preview {
+  width: 100%;
+  color: #fff;
+  font-size: 0.5em;
+  font-size: 2.5vmin;
+  -webkit-box-ordinal-group: 1;
+      -ms-flex-order: 0;
+          order: 0;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
+  -ms-flex-item-align: auto;
+      -ms-grid-row-align: auto;
+      align-self: auto;
+  text-align: right;
+}
+
+.clear .output-display {
+  -webkit-animation: fade 1s;
+          animation: fade 1s;
+  color: transparent;
+  text-shadow: 0 0 0 white;
+}
+
+.calculation {
+  color: #485f68;
+}
+
+@-webkit-keyframes fade {
+  to {
+    text-shadow: 0 0 150px white;
+  }
+}
+
+@keyframes fade {
+  to {
+    text-shadow: 0 0 150px white;
+  }
+}
+
+.control-buttons {
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: hidden;
+}
+
+.control-buttons:hover {
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+}
+
+.control-buttons:active {
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+}
+
+.calculator .row {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+}
+
+.calculator .row:hover {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.calculator .row:active {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+button {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-transform: uppercase;
+  border: 0;
+  cursor: pointer;
+  color: #fff;
+  outline-style: solid;
+  outline-width: 2px;
+  outline-color: transparent;
+  outline-offset: -2px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-family: "Oxygen", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  background-color: #f6827a;
+  font-size: 4.5vmin;
+  font-weight: 400;
+}
+
+button:hover {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+button:active {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+button:hover {
+  background-color: #f46c62;
+}
+
+button:active {
+  background-color: #f3554a;
+}
+
+button:last-child {
+  background-color: #f7ba86;
+}
+
+button:last-child:hover {
+  background-color: #f5ac6e;
+}
+
+button:last-child:active {
+  background-color: #f49f56;
+}
+
+button.double {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+}
+
+button.double:hover {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+}
+
+button.double:active {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+}
+
+button.func {
+  background-color: #ec475c;
+}
+
+button.func:hover {
+  background-color: #ea3048;
+}
+
+button.func:active {
+  background-color: #e71933;
+}
+
+.slight-bottom-shadow {
+  -webkit-box-shadow: 0px 0 2px rgba(41, 54, 59, 0.5);
+          box-shadow: 0px 0 2px rgba(41, 54, 59, 0.5);
+}
+/*# sourceMappingURL=index.css.map */
