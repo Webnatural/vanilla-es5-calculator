@@ -20,7 +20,7 @@
 
         <form class="calculator" id="widget-calculator">
             <section class="output-display" role="presentation">
-                <input type="text" id="former-equation" class="former-equation-preview screen-display" />
+                <input type="text" id="former-equation" class="former-equation-preview screen-display" readonly>
                 <output for="former-equation" class="current-calculation-display screen-display"></output>
             </section>
             <section class="control-buttons">
@@ -34,7 +34,7 @@
                         Save
                     </button>
                     <button type="button" class="button operator" accesskey="/" value="/"
-                        aria-label="Division operator">
+                        aria-label="Division operator which triggers either division of not yet provided operand or calculation of equation which did not end with an equality symbol">
                         ÷
                     </button>
                 </div>
@@ -50,7 +50,7 @@
 
                     </button>
                     <button type="button" class="button operator" accesskey="*" value="*"
-                        aria-label="Multiplication operator">
+                        aria-label="Multiplication operator which triggers either multiplication of not yet provided operand or calculation of equation which did not end with an equality symbol">
                         ×
                     </button>
                 </div>
@@ -66,7 +66,7 @@
                         3
                     </button>
                     <button type="button" class="button operator" accesskey="-" value="-"
-                        aria-label="Subtraction operator">
+                        aria-label="Subtraction operator which triggers either subtraction of not yet provided operand or calculation of equation which did not end with an equality symbol">
                         -
                     </button>
                 </div>
@@ -81,7 +81,7 @@
                         6
                     </button>
                     <button type="button" class="button operator" accesskey="+" value="+"
-                        aria-label="Addition operator">
+                        aria-label="Addition operator which triggers either addition of not yet provided operand or calculation of equation which did not end with an equality symbol">
                         +
                     </button>
                 </div>
