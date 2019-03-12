@@ -1,6 +1,11 @@
 /* Document font */
 /* Document colors */
 /* Calculator colors */
+/* 0, 640px */
+/* 641px, 1024px */
+/* 1025px, 1440px */
+/* 1441px, 1920px */
+/* 1921px */
 html {
   font-size: 16px;
 }
@@ -27,21 +32,6 @@ html {
   font-family: "Oxygen", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
-.output-display, .control-buttons, .calculator .row, button, button.double {
-  -webkit-transition: background-color .5s ease-out;
-  transition: background-color .5s ease-out;
-}
-
-.output-display:hover, .control-buttons:hover, .calculator .row:hover, button:hover {
-  -webkit-transition: background-color .2s ease-out;
-  transition: background-color .2s ease-out;
-}
-
-.output-display:active, .control-buttons:active, .calculator .row:active, button:active {
-  -webkit-transition: background-color 0s ease-out;
-  transition: background-color 0s ease-out;
-}
-
 html, body {
   height: 100%;
 }
@@ -60,6 +50,20 @@ body {
   font-family: "Oxygen", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
+.widget-container {
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (min-width: 64.063em) {
+  .widget-container {
+    min-width: 261px;
+    min-height: 505px;
+    width: 45vh;
+    height: 90vh;
+  }
+}
+
 .calculator {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -68,10 +72,8 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  min-width: 261px;
-  min-height: 505px;
-  width: 45vh;
-  height: 90vh;
+  width: 100%;
+  height: 100%;
 }
 
 .output-display {
@@ -91,19 +93,7 @@ body {
   background: #29363b;
   cursor: ponter;
   overflow: hidden;
-  min-height: 180px;
-}
-
-.output-display:hover {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-
-.output-display:active {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  min-height: 33%;
 }
 
 .output-display.clear {
@@ -218,18 +208,6 @@ body {
   overflow: hidden;
 }
 
-.control-buttons:hover {
-  -webkit-box-flex: 4;
-      -ms-flex: 4;
-          flex: 4;
-}
-
-.control-buttons:active {
-  -webkit-box-flex: 4;
-      -ms-flex: 4;
-          flex: 4;
-}
-
 .calculator .row {
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -246,16 +224,8 @@ body {
   width: 100%;
 }
 
-.calculator .row:hover {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-
-.calculator .row:active {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+[disabled] {
+  cursor: not-allowed;
 }
 
 button {
@@ -287,38 +257,40 @@ button {
   background-color: #f6827a;
   font-size: 4.5vmin;
   font-weight: 400;
+  /* 
+     * https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer 
+     * coarse: The primary input mechanism includes a pointing device of limited accuracy.
+     */
 }
 
-button:hover {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-
-button:active {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-
-button:hover {
-  background-color: #f46c62;
+@media not all and (pointer: coarse) {
+  button:hover {
+    background-color: #f46c62;
+  }
 }
 
 button:active {
   background-color: #f3554a;
+  outline-color: #f3554a;
 }
 
 button:last-child {
   background-color: #f7ba86;
+  /* 
+     * https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer 
+     * coarse: The primary input mechanism includes a pointing device of limited accuracy.
+     */
 }
 
-button:last-child:hover {
-  background-color: #f5ac6e;
+@media not all and (pointer: coarse) {
+  button:last-child:hover {
+    background-color: #f5ac6e;
+  }
 }
 
 button:last-child:active {
   background-color: #f49f56;
+  outline-color: #f2913e;
 }
 
 button.double {
@@ -327,28 +299,23 @@ button.double {
           flex: 2;
 }
 
-button.double:hover {
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
-}
-
-button.double:active {
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
-}
-
 button.func {
   background-color: #ec475c;
+  /* 
+     * https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer 
+     * coarse: The primary input mechanism includes a pointing device of limited accuracy.
+     */
 }
 
-button.func:hover {
-  background-color: #ea3048;
+@media not all and (pointer: coarse) {
+  button.func:hover {
+    background-color: #ea3048;
+  }
 }
 
 button.func:active {
   background-color: #e71933;
+  outline-color: #d1162d;
 }
 
 .slight-bottom-shadow {

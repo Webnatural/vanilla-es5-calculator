@@ -4,9 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#29363b">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#29363b">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="index.css" />
-    <title>CalcApp</title>
+    <title>iTech CalcApp</title>
 </head>
 
 <body>
@@ -15,18 +22,18 @@
         </nav>
     </header>
 
-    <main id="itech-calcapp-widget">
+    <main id="itech-calcapp-widget" class="widget-container">
         <noscript>Probably fallback to PHP</noscript>
 
         <form class="calculator" id="widget-calculator">
             <section class="output-display" role="presentation">
                 <input type="text" id="former-equation" class="former-equation-preview screen-display" readonly>
-                <output for="former-equation" class="current-calculation-display screen-display"></output>
+                <output for="former-equation" class="current-calculation-display screen-display">0</output>
             </section>
             <section class="control-buttons">
                 <div class="row slight-bottom-shadow">
                     <button type="reset" class="button func ac" accesskey="esc"
-                        aria-label="Resets all former and current operations">
+                        aria-label="Resets all former and current operations" value="AC">
                         AC
                     </button>
                     <button type="button" class="button func double save" accesskey="s" value="Save"

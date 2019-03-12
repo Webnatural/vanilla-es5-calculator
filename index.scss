@@ -1,197 +1,221 @@
 @import "_config";
 
+// https://css-tricks.com/snippets/css/fluid-typography/
 $min_width: 320px;
 $max_width: 1200px;
 $min_font: 16px;
 $max_font: 24px;
 
 html {
-  @include fluid-type($min_width, $max_width, $min_font, $max_font);
+    @include fluid-type($min_width, $max_width, $min_font, $max_font);
 }
 
 * {
-	margin: 0;
-	border: 0;
-	padding: 0;
-	background: transparent;
-	box-sizing: border-box;
-	font-family: $root-font;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    box-sizing: border-box;
+    font-family: $root-font;
 }
 
 %transition {
-	transition: 
-			background-color .5s ease-out;
-	
-	&:hover {
-		transition: 
-			background-color .2s ease-out;
-	}
-	&:active {
-		transition: 
-			background-color 0s ease-out;
-	}
+    transition: background-color .5s ease-out;
+
+    @include hover-supported() {
+        transition: background-color .2s ease-out;
+    }
+
+    &:active {
+        transition: background-color 0s ease-out;
+    }
 }
 
-@mixin flex($start) {
-	@extend %transition;
-	flex: $start;
-	
-	&:hover {
-		flex: $start;
-	}
-	&:active {
-		flex: $start;
-	}
+html, body {
+    height: 100%;
 }
 
-
-html, body { height: 100%; }
 body {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: $root-bright-color;
-	font-family: $root-font;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $root-bright-color;
+    font-family: $root-font;
+}
+
+.widget-container {
+    width: 100%;
+    height: 100%;
+}
+
+@media #{$large-up} {
+    .widget-container {
+        min-width: 261px;
+        min-height: 505px;
+        width: 45vh;
+        height: 90vh;
+    }
 }
 
 .calculator {
-	display: flex;
-	flex-direction: column;
-	min-width: 261px;
-	min-height: 505px;	
-	width: 45vh;
-	height: 90vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
 }
 
 .output-display {
-	@include flex(1);
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: $calc-head-bg-color;
-	cursor: ponter;
-	//padding: 2.5vmin 5vmin;
-	overflow: hidden;
-	min-height: 180px;
-	
-	&.clear {
-		animation: clear .15s 3;
-	}
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $calc-head-bg-color;
+    cursor: ponter;
+
+    //padding: 2.5vmin 5vmin;
+    overflow: hidden;
+    min-height: 33%;
+
+    &.clear {
+        animation: clear .15s 3;
+    }
 }
 
 @keyframes clear {
-	33% {
-		transform: translateX(5px);
-	}
-	66% {
-		transform: translateX(-5px);
-	}
+    33% {
+        transform: translateX(5px);
+    }
+
+    66% {
+        transform: translateX(-5px);
+    }
 }
 
 .output-display {
-	font-size: 2em;
-	font-size: 10vmin;
-	font-weight: $root-font-weight;
-	color: $root-bright-color;
-	flex-direction: column;
-	flex: 0 1 auto;
-	flex-wrap: wrap;
+    font-size: 2em;
+    font-size: 10vmin;
+    font-weight: $root-font-weight;
+    color: $root-bright-color;
+    flex-direction: column;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
 
-	.current-calculation-display {
-		width: 100%;
-		order: 1;
-		flex: 0 1 auto;
-		align-self: auto;
-		color: $root-bright-color;
-		text-align: right;
-	}
+    .current-calculation-display {
+        width: 100%;
+        order: 1;
+        flex: 0 1 auto;
+        align-self: auto;
+        color: $root-bright-color;
+        text-align: right;
+    }
 
-	.former-equation-preview {
-		width: 100%;
-		color: $root-bright-color;
-		font-size: 0.5em;
-		font-size: 2.5vmin;
-		order: 0;
-		flex: 0 1 auto;
-		align-self: auto;
-		text-align: right;
-	}
-	
-	.clear & {
-		animation: fade 1s;
-		color: transparent;
-		text-shadow: 0 0 0 white;
-	}
+    .former-equation-preview {
+        width: 100%;
+        color: $root-bright-color;
+        font-size: 0.5em;
+        font-size: 2.5vmin;
+        order: 0;
+        flex: 0 1 auto;
+        align-self: auto;
+        text-align: right;
+    }
+
+    .clear & {
+        animation: fade 1s;
+        color: transparent;
+        text-shadow: 0 0 0 white;
+    }
 }
 
 .calculation {
-	color: lighten($root-dark-color, 15);
+    color: lighten($root-dark-color, 15);
 }
 
 @keyframes fade {
-	to {
-		text-shadow: 0 0 150px white;
-	}
+    to {
+        text-shadow: 0 0 150px white;
+    }
 }
 
 .control-buttons {
-	@include flex(4);
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
+
 .calculator .row {
-	@include flex(1);
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+[disabled] {
+    cursor: not-allowed;
 }
 
 button {
-	@include flex(1);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-transform: uppercase;
-	border: 0;
-	cursor: pointer;
-	color: $root-bright-color;
-	outline-style:  solid;
-	outline-width:  2px;
-	outline-color:  transparent;
-	outline-offset:  -2px;
-	user-select: none;
-	font-family: $root-font;
-	background-color: $calc-digi-bg-color;
-	font-size: 4.5vmin;
-	font-weight: $root-font-weight;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    border: 0;
+    cursor: pointer;
+    color: $root-bright-color;
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: transparent;
+    outline-offset: -2px;
+    user-select: none;
+    font-family: $root-font;
+    background-color: $calc-digi-bg-color;
+    font-size: 4.5vmin;
+    font-weight: $root-font-weight;
 
-	&:hover { 
-		background-color: darken( $calc-digi-bg-color, 5% ); 
-	}
-	&:active { 
-		background-color: darken( $calc-digi-bg-color, 10% );
-		//outline-color: rgba($root-light-color, .2); 
+	@include hover-supported() {
+        background-color: darken($calc-digi-bg-color, 5%);
 	}
 
-	&:last-child {
-		background-color: $calc-oper-bg-color;
-		&:hover { background-color: darken( $calc-oper-bg-color, 5% ) }
-		&:active { background-color: darken( $calc-oper-bg-color, 10% ) }
-	}
-	&.double {
-		@include flex(2);
-	}
-	&.func {
-		background-color: $calc-func-bg-color;
-		&:hover { background-color: darken( $calc-func-bg-color, 5% ) }
-		&:active { background-color: darken( $calc-func-bg-color, 10% ) }
-	}
+    &:active {
+        background-color: darken($calc-digi-bg-color, 10%);
+        outline-color: darken($calc-digi-bg-color, 10%);
+    }
+
+    &:last-child {
+        background-color: $calc-oper-bg-color;
+
+        @include hover-supported() {
+            background-color: darken($calc-oper-bg-color, 5%);
+        }
+
+        &:active {
+            background-color: darken($calc-oper-bg-color, 10%);
+            outline-color: darken($calc-oper-bg-color, 15%);
+        }
+    }
+
+    &.double {
+        flex: 2;
+    }
+
+    &.func {
+        background-color: $calc-func-bg-color;
+
+        @include hover-supported() {
+            background-color: darken($calc-func-bg-color, 5%);
+        }
+
+        &:active {
+            background-color: darken($calc-func-bg-color, 10%);
+            outline-color: darken($calc-func-bg-color, 15%);
+        }
+    }
 }
 
-
 .slight-bottom-shadow {
-	box-shadow: 0px 0 2px rgba($root-dark-color, .5);
+    box-shadow: 0px 0 2px rgba($root-dark-color, 0.5);
 }
