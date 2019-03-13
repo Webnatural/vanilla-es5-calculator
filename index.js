@@ -1,8 +1,8 @@
-var WidgetCalculator = function () {
-    var calculatorform = document.querySelector('.calculator');
-    var controls = document.querySelector('.control-buttons');
-    var preview = document.getElementById("former-equation");
+/* https://bit.ly/2T1986Y */
+/* https://bit.ly/20hr4bo */
     var output = document.querySelector('.current-calculation-display');
+    var calcdata = document.getElementById("calculations-data");
+    var savebtn = document.querySelector('button.save');
 
     //Model
     var model = {
@@ -24,7 +24,12 @@ var WidgetCalculator = function () {
             model.result = parseFloat(model.firstOperand) * parseFloat(model.secondOperand);
         },
         division: function () {
-            model.result = parseFloat(model.firstOperand) / parseFloat(model.secondOperand);
+            if (model.secondOperand !== 0) {
+                model.result = parseFloat(model.firstOperand) * parseFloat(model.secondOperand);
+            } else {
+                console.log("who knows?")
+                model.result = "undefined";
+            }
         }
 
     }
@@ -39,12 +44,20 @@ var WidgetCalculator = function () {
             }
         },
         showResult: function () {
-            document.getElementById("former-equation").value = model.firstOperand + model.operator + model.secondOperand + "=" + model.result;
-            if (model.result.length > 10 && model.result.indexOf('.') !== -1) {
+            preview.value = model.firstOperand.toString() + " " + view.operator + " " + model.secondOperand.toString() + " = " + model.result
+            if (model.result.toString().indexOf('.') !== -1) {
                 output.textContent = parseFloat(model.result.toFixed(4));
+            } else if (isNaN(model.result)) {
+                model.result = 0;
             } else {
                 output.textContent = model.result;
             }
+        },
+        enableSaveBtn: function () {
+            savebtn.disabled = false;
+        },
+        disableSaveBtn: function () {
+            savebtn.disabled = true;
         }
     }
 
@@ -60,58 +73,63 @@ var WidgetCalculator = function () {
 
         setUpHandlers: function () {
 
-
+            calculatorform.addEventListener('submit', function (event) {
+                event.preventDefault();
+            });
 
             document.addEventListener('keypress', controller.handleKeyboardInput);
             calculatorform.addEventListener('input', function (event) {
                 console.log(this.event + "!!!");
             });
             controls.addEventListener('click', controller.handlePointerInput);
-            //controls.addEventListener('touchend', controller.handlePointerInput);
 
         },
         updateWholeEquation: function (reset) {
             if (!reset) {
-                model.wholeEquation.push([model.firstOperand.toString() + model.operator.toString() + model.secondOperand.toString() + "=" + model.result]);
+                model.wholeEquation.push([model.firstOperand.toString() + " " + view.operator + " " + model.secondOperand.toString() + " = " + model.result]);
+                calcdata.value = JSON.stringify(model.wholeEquation);
             } else {
                 model.wholeEquation = [];
+                calcdata.value = "";
+                view.disableSaveBtn();
+            }
+        },
+        vibrate: function () {
+            if ("vibrate" in navigator) {
+                navigator.vibrate([50]);
+            } else {
+                // no vibration detected
             }
         },
         handlePointerInput: function (event) {
-            if (event.type == "touchend") {
-                //event.preventDefault()
-                //document.activeElement.blur();
-            } else if (event.type == "click") {
-
-            }
             var key = event.target.value;
             if (parseInt(key) >= 0 && parseInt(key) <= 9) {
                 controller.triggerDigit(key)
-                navigator.vibrate([50]);
+                controller.vibrate()
             }
 
             // switch may be slow in comparison to if/else, so we use faster method
             if (controller.operatorsKeys.indexOf(key) !== -1) {
                 controller.triggerOperator(key)
-                navigator.vibrate([50]);
+                controller.vibrate()
             } else if (key == ".") {
                 controller.triggerOption(".")
-                navigator.vibrate([50]);
+                controller.vibrate()
             }
 
             // however we have very limited set, so let's play with switch :)
             switch (key) {
                 case 'AC':
                     controller.triggerOption("AC")
-                    navigator.vibrate([50]);
+                    controller.vibrate()
                     break;
                 case 'Save':
                     controller.save();
-                    navigator.vibrate([50]);
+                    controller.vibrate()
                     break;
                 case '=':
                     controller.performCalculation();
-                    navigator.vibrate([50]);
+                    controller.vibrate()
                     break;
             }
         },
@@ -144,23 +162,12 @@ var WidgetCalculator = function () {
             }
 
         },
-        handleClickDupe: function (event) {
-            event.preventDefault(); //prevent default behavior
-            if (event.type == "touchstart") {
-                // Handle touchstart event.
-            } else if (event.type == "click") {
-                // Handle click event.
-            }
-        },
         triggerDigit: function (digit) {
             if (model.currentInput !== "" || model.currentInput === "0.") {
-                //if (model.performedCalculation == false) {
                 model.currentInput += digit;
                 view.updateDisplay();
-                //} 
                 model.performedCalculation = false;
             } else {
-                console.log()
                 if (digit === '0') {
                     if (!model.currentInput.length) {
                         model.currentInput = digit;
@@ -184,9 +191,14 @@ var WidgetCalculator = function () {
             model.currentInput = output.textContent;
             model.firstOperand = model.currentInput;
             model.currentInput = '';
+            view.operator = operator;
+            if (operator === "*") {
+                view.operator = "×";
+            } else if (operator === "/") {
+                view.operator = "÷";
+            }
         },
         performCalculation: function () {
-            console.log("model exec")
             model.performedCalculation = true;
             model.decimals = false;
 
@@ -225,38 +237,41 @@ var WidgetCalculator = function () {
                     model.firstOperand = model.result;
                     break;
             }
+            view.enableSaveBtn();
         },
         save: function () {
 
-            // Same as below, but in arrow func
-            //var csvContentArrow = "data:text/csv;charset=utf-8," + rows.map(e=>e.join(",")).join("\n");
+            if (calcdata.value != "") {
 
-            var csvContent = "data:text/csv;charset=utf-8,";
-            var wholeEquation = model.wholeEquation;
-            wholeEquation.forEach(function (wholeEquation) {
-                var wholeEquationRow = wholeEquation.join(",");
-                console.log(wholeEquationRow)
-                csvContent += wholeEquationRow + "\r\n";
-            });
+                var csvContent = "data:text/csv;charset=utf-8,";
+                var wholeEquation = model.wholeEquation;
+                wholeEquation.forEach(function (wholeEquation) {
+                    var wholeEquationRow = wholeEquation.join(",");
+                    csvContent += wholeEquationRow + "\r\n";
+                });
 
-            var encodedUri = encodeURI(csvContent);
-            var link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "calculations.csv");
-            document.body.appendChild(link); // Required for FF
+                var encodedUri = encodeURI(csvContent);
+                var link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", "calculations.csv");
+                document.body.appendChild(link);
 
-            link.click(); // This will download the data file named "my_data.csv".
-            /*fetch("create_csv.php", {
-                method: "POST",
-                mode: "same-origin",
-                credentials: "same-origin",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    "payload": model.wholeEquation
-                })
-            });*/
+                link.click(); // this will trigger download the data file".
+
+                var send = function () {
+                    var request = new XMLHttpRequest();
+                    request.open('POST', 'create_csv.php', false);
+
+                    var formData = new FormData();
+                    formData.append("calcdata", calcdata.value);
+
+                    request.send(formData);
+                    model.wholeEquation = [];
+                    calcdata.value = "";
+                    console.log(request.response);
+                };
+                send();
+            }
         },
         triggerOption: function (optionTriggered) {
 
@@ -299,7 +314,7 @@ var WidgetCalculator = function () {
         controller: controller
     }
 
-}(); // call the WidgetCalculator.controller.setUpHandlers()
+}();
 
 WidgetCalculator.controller.setUpHandlers();
 

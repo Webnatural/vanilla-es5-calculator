@@ -19,6 +19,10 @@ html {
     font-family: $root-font;
 }
 
+table td {
+	vertical-align: top;
+}
+
 %transition {
     transition: background-color .5s ease-out;
 
@@ -32,10 +36,13 @@ html {
 }
 
 html, body {
-    height: 100%;
+	height: 100%;
+	width: 100%;
 }
 
-body {
+body.widget {
+	display:table;
+	border-collapse: collapse; border-spacing: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,13 +51,19 @@ body {
 }
 
 .widget-container {
+	margin-left: auto;
+	margin-right: auto;
     width: 100%;
     height: 100%;
 }
 
 @media #{$large-up} {
     .widget-container {
-        min-width: 261px;
+		display: table;
+		border-collapse: collapse; border-spacing: 0;
+        width: 261px;
+		height: 505px;
+		min-width: 261px;
         min-height: 505px;
         width: 45vh;
         height: 90vh;
@@ -58,6 +71,7 @@ body {
 }
 
 .calculator {
+	display:table-cell;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -66,7 +80,8 @@ body {
 
 .output-display {
     flex: 1;
-    position: relative;
+	position: relative;
+	display:table-cell;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,6 +117,7 @@ body {
     flex-wrap: wrap;
 
     .current-calculation-display {
+		display: block;
         width: 100%;
         order: 1;
         flex: 0 1 auto;
@@ -139,14 +155,17 @@ body {
 }
 
 .control-buttons {
-    flex: 4;
+	flex: 4;
+	display:table;
+	border-collapse: collapse; border-spacing: 0;
     display: flex;
     flex-direction: column;
     overflow: hidden;
 }
 
 .calculator .row {
-    flex: 1;
+	flex: 1;
+	display:table-row;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -158,7 +177,11 @@ body {
 }
 
 button {
-    flex: 1;
+	flex: 1;
+	display:table-cell;
+	width: 25%;
+	width: calc(100%/4);
+	float: left;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -198,7 +221,8 @@ button {
         }
     }
 
-    &.double {
+    &.half {
+		width: 50%;
         flex: 2;
     }
 

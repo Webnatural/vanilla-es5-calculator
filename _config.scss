@@ -96,3 +96,17 @@ $xxlarge-only: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (m
        }
      }
  }
+
+ // Nice little mixin to kinda/sorta support one type of flexbox in IE9
+@mixin ie-flex($flex-amount: nil, $max-flex: nil) {
+    .lt-ie10 & {
+      float: left;
+      @if $flex-amount != nil {
+        $percentage: $flex-amount / $max-flex;
+        width: $percentage * 100%;
+      }
+      // This content is to add additional styling if needed. Hopefully much of the time it won't be, but you never know.
+      @content;
+    }
+  }
+  

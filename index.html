@@ -16,7 +16,7 @@
     <title>iTech CalcApp</title>
 </head>
 
-<body>
+<body class="widget">
     <header>
         <nav>
         </nav>
@@ -25,19 +25,20 @@
     <main id="itech-calcapp-widget" class="widget-container">
         <noscript>Probably fallback to PHP</noscript>
 
-        <form class="calculator" id="widget-calculator">
-            <section class="output-display" role="presentation">
+        <form class="calculator" id="widget-calculator" action="create_csv.php" method="post">
+            <div class="output-display">
+                <input type="hidden" id="calculations-data">
                 <input type="text" id="former-equation" class="former-equation-preview screen-display" readonly>
                 <output for="former-equation" class="current-calculation-display screen-display">0</output>
-            </section>
-            <section class="control-buttons">
+            </div>
+            <div class="control-buttons">
                 <div class="row slight-bottom-shadow">
-                    <button type="reset" class="button func ac" accesskey="esc"
+                    <button type="reset" class="button func ac" accesskey="c"
                         aria-label="Resets all former and current operations" value="AC">
                         AC
                     </button>
-                    <button type="button" class="button func double save" accesskey="s" value="Save"
-                        aria-label="Saves calculations to CSV file">
+                    <button type="submit" class="button func half save" accesskey="s" value="Save"
+                        aria-label="Saves calculations to CSV file" disabled>
                         Save
                     </button>
                     <button type="button" class="button operator" accesskey="/" value="/"
@@ -50,11 +51,12 @@
                         aria-label="Appends decimal separator to current operand">
                         .
                     </button>
-                    <button type="button" class="button digit" accesskey="0" value="0" arial-label="Digit 0">
+                    <button type="button" class="button digit" accesskey="0" value="0" aria-label="Digit 0">
                         0
                     </button>
-                    <button type="button" class="button placeholder" value="" disabled>
-
+                    <button type="button" class="button oper" accesskey="h" value="history"
+                        aria-label="Views former calculations" disabled>
+                        ↺
                     </button>
                     <button type="button" class="button operator" accesskey="*" value="*"
                         aria-label="Multiplication operator which triggers either multiplication of not yet provided operand or calculation of equation which did not end with an equality symbol">
@@ -108,7 +110,7 @@
                         =
                     </button>
                 </div>
-            </section>
+            </div>
         </form>
         <script src="index.js"></script>
 
