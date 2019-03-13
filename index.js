@@ -1,5 +1,25 @@
 /* https://bit.ly/2T1986Y */
 /* https://bit.ly/20hr4bo */
+
+/*                                    _   _           _ ___  _ 
+| |                                  | | | |    _    ( )__ \( )
+| |__   _____      __      _ __      | | | |  _| |_  |/   ) |/ 
+| '_ \ / _ \ \ /\ / /     | '__|     | | | | |_   _|     / /   
+| | | | (_) \ V  V /   _  | |     _  | |_| |   |_|      |_|    
+|_| |_|\___/ \_/\_/   (_) |_|    (_)  \___/             (_)    
+                                                               
+  __                     _           ___  
+ / _|                   | |         |__ \ 
+| |_ ___ _ __ _ __ ___  | |_   ___  __ ) |
+|  _/ _ \ '__| '__/ _ \ | | | | \ \/ // / 
+| ||  __/ |  | | |  __/_| | |_| |>  <|_|  
+|_| \___|_|  |_|  \___(_)_|\__,_/_/\_(_)  
+                                          
+                                                 
+*/var WidgetCalculator = function () {
+    var calculatorform = document.querySelector('.calculator');
+    var controls = document.querySelector('.control-buttons');
+    var preview = document.getElementById("former-equation");;
     var output = document.querySelector('.current-calculation-display');
     var calcdata = document.getElementById("calculations-data");
     var savebtn = document.querySelector('button.save');
@@ -157,6 +177,9 @@
                     controller.save();
                     break;
                 case '=':
+                    controller.performCalculation();
+                    break;
+                case 'Enter':
                     controller.performCalculation();
                     break;
             }
