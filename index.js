@@ -1,6 +1,3 @@
-/* https://bit.ly/2T1986Y */
-/* https://bit.ly/20hr4bo */
-
 /*                                    _   _           _ ___  _ 
 | |                                  | | | |    _    ( )__ \( )
 | |__   _____      __      _ __      | | | |  _| |_  |/   ) |/ 
@@ -16,7 +13,7 @@
 |_| \___|_|  |_|  \___(_)_|\__,_/_/\_(_)  
                                           
                                                  
-*/var WidgetCalculator = function () {
+*/  var WidgetCalculator = function () {
     var calculatorform = document.querySelector('.calculator');
     var controls = document.querySelector('.control-buttons');
     var preview = document.getElementById("former-equation");;
@@ -45,10 +42,9 @@
         },
         division: function () {
             if (model.secondOperand !== 0) {
-                model.result = parseFloat(model.firstOperand) * parseFloat(model.secondOperand);
+                model.result = parseFloat(model.firstOperand) / parseFloat(model.secondOperand);
             } else {
-                console.log("who knows?")
-                model.result = "undefined";
+                model.result = "cannot divide by 0";
             }
         }
 
@@ -59,18 +55,25 @@
             if (reset) {
                 output.textContent = '0';
                 preview.value = "";
+                view.result = "";
+                view.operator = "";
             } else {
-                output.textContent = model.currentInput;
+                output.textContent = model.currentInput.replace(".", ",");
+                if (view.result && view.operator) {
+                    preview.value = view.result.replace(".", ",") + " " + view.operator;
+                }
             }
         },
         showResult: function () {
-            preview.value = model.firstOperand.toString() + " " + view.operator + " " + model.secondOperand.toString() + " = " + model.result
+            preview.value = model.firstOperand.toString().replace(".", ",") + " " + view.operator + " " + model.secondOperand.toString().replace(".", ",") + " =";
             if (model.result.toString().indexOf('.') !== -1) {
-                output.textContent = parseFloat(model.result.toFixed(4));
+                view.result = model.result.toString().replace(".", ",");
+                output.textContent = view.result;
             } else if (isNaN(model.result)) {
                 model.result = 0;
             } else {
-                output.textContent = model.result;
+                view.result = model.result.toString().replace(".", ",")
+                output.textContent = view.result;
             }
         },
         enableSaveBtn: function () {
@@ -96,11 +99,7 @@
             calculatorform.addEventListener('submit', function (event) {
                 event.preventDefault();
             });
-
             document.addEventListener('keypress', controller.handleKeyboardInput);
-            calculatorform.addEventListener('input', function (event) {
-                console.log(this.event + "!!!");
-            });
             controls.addEventListener('click', controller.handlePointerInput);
 
         },
@@ -135,6 +134,9 @@
             } else if (key == ".") {
                 controller.triggerOption(".")
                 controller.vibrate()
+            } else if (key == "history") {
+                controller.vibrate()
+                window.open("Calculations.php", '_blank');
             }
 
             // however we have very limited set, so let's play with switch :)
@@ -211,8 +213,12 @@
             }
             model.performedCalculation = false;
             model.operator = operator;
-            model.currentInput = output.textContent;
-            model.firstOperand = model.currentInput;
+            model.currentInput = output.textContent.replace(",", '.');
+            if (model.firstOperand) {
+                model.firstOperand = model.currentInput;
+            } else {
+                model.firstOperand = model.currentInput;
+            }
             model.currentInput = '';
             view.operator = operator;
             if (operator === "*") {
@@ -226,7 +232,7 @@
             model.decimals = false;
 
             if (model.currentInput != "" && model.firstOperand) {
-                model.lastInput = model.currentInput
+                model.lastInput = model.currentInput;
                 model.currentInput = "";
             }
 
@@ -303,18 +309,14 @@
                     controller.allClear();
                     break;
                 case '.':
-
                     if (model.currentInput == '') {
                         model.currentInput = '0.';
                     } else if (model.currentInput.indexOf('.') == -1) {
                         model.currentInput += '.';
                     }
-
                     model.decimals = true;
                     view.updateDisplay();
-
                     break;
-
             }
         },
         allClear: function () {
@@ -340,73 +342,3 @@
 }();
 
 WidgetCalculator.controller.setUpHandlers();
-
-/*
-// Check if a support for Class exists
-function checkEsSupport() {
-    if (typeof Symbol == "undefined") return console.log("aaaaaaaaaaaaaa");
-    try { calculationFunction(); }
-    catch (e) { return false; }
-
-    return true;
-}
-
-if (checkEsSupport()) {
-    // Use SpecialObject and specialFunction
-} else {
-    // You cannot use them :(
-}
-
-var calculationFunction = function (x, y, operand) {
-
-}
-
-
-class Calculate {
-
-    varructor(x, y, operator) {
-        this.x = x;
-        this.y = y;
-        this.operator = operator;
-    }
-
-    get prop() {
-        return 'getter';
-    }
-
-    set prop(value) {
-        console.log('setter: ' + value);
-    }
-
-    get calculation() {
-        return this.calculate();
-    }
-
-    calculate() {
-        if (this.operator = "+") {
-            return this.x + this.y;
-        } else if (this.operator = "-") {
-            return this.x + this.y;
-        } else if (this.operator = "*") {
-            return this.x + this.y;
-        } else if (this.operator = "/") {
-            return this.x + this.y;
-        }
-
-    }
-
-
-
-}
-
-var calculate = new Calculate(10, 10, "+");
-
-console.log(calculate.calculation);
-
-window.onload = () => {
-    document.getElementById("widget-calculator").addEventListener("input", function (event) {
-        console.log(event);
-    });
-};
-
-*/

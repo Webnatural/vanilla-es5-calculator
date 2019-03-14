@@ -87,8 +87,6 @@ body.widget {
     align-items: center;
     background: $calc-head-bg-color;
     cursor: ponter;
-
-    //padding: 2.5vmin 5vmin;
     overflow: hidden;
     min-height: 33%;
 
@@ -127,14 +125,16 @@ body.widget {
     }
 
     .former-equation-preview {
+        color: darken($root-bright-color, 50%);
         width: 100%;
-        color: $root-bright-color;
-        font-size: 0.5em;
-        font-size: 2.5vmin;
+        font-size: 4em;
+        font-size: 5vmin;
         order: 0;
         flex: 0 1 auto;
         align-self: auto;
         text-align: right;
+        outline: 0;
+        cursor: default;
     }
 
     .clear & {
@@ -142,10 +142,6 @@ body.widget {
         color: transparent;
         text-shadow: 0 0 0 white;
     }
-}
-
-.calculation {
-    color: lighten($root-dark-color, 15);
 }
 
 @keyframes fade {
@@ -207,6 +203,10 @@ button {
         background-color: darken($calc-digi-bg-color, 10%);
         outline-color: darken($calc-digi-bg-color, 10%);
     }
+    
+    &:focus {
+        outline-color: darken($calc-digi-bg-color, 15%);
+    }
 
     &:last-child {
         background-color: $calc-oper-bg-color;
@@ -236,6 +236,9 @@ button {
         &:active {
             background-color: darken($calc-func-bg-color, 10%);
             outline-color: darken($calc-func-bg-color, 15%);
+        }
+        &:focus {
+            outline-color: darken($calc-func-bg-color, 25%);
         }
     }
 }

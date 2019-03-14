@@ -6,7 +6,6 @@ require_once("get_ip_address.php");
 if (isset($_POST["calcdata"])) {
     $calculationsData = json_decode($_POST["calcdata"]);
     $calculationsDataFlat = array_merge(...$calculationsData);
-    var_dump($calculationsDataFlat);
     $calculationsComma = implode(", ", $calculationsDataFlat);
     
     $userIpAdr = get_ip_address();

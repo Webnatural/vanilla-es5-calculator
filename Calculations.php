@@ -22,20 +22,22 @@
     </header>
 
     <main id="itech-calcapp-logs" class="log-container">
-        <table>
-<?php 
+        <small>
+            <table>
+            <?php 
 
-$f = fopen("formdata.csv", "r");
-while (($line = fgetcsv($f)) !== false) {
-        echo "<tr>";
-        foreach ($line as $cell) {
-                echo "<td>" . htmlspecialchars($cell) . "</td>";
-        }
-        echo "</tr>\n";
-}
-fclose($f);
-?>
-</table>
+            $file = fopen("formdata.csv", "r");
+            while (($csv = fgetcsv($file)) !== false) {
+                    echo "<tr>";
+                    foreach ($csv as $cell) {
+                            echo "<td>" . htmlspecialchars($cell) . "</td>";
+                    }
+                    echo "</tr>\n";
+            }
+            fclose($file);
+            ?>
+            </table>
+        </small>
     </main>
     <footer></footer>
 </body>
