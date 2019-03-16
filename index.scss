@@ -19,8 +19,18 @@ html {
     font-family: $root-font;
 }
 
-table td {
-	vertical-align: top;
+table td,
+table th {
+    vertical-align: top;
+    padding: .05em;
+    padding: .2vmin;
+    font-size: 0.5em;
+    text-align: left;
+    table-layout: fixed;
+}
+
+table th {
+    font-weight: 500;
 }
 
 %transition {

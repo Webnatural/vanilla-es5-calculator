@@ -22,8 +22,13 @@
     </header>
 
     <main id="itech-calcapp-logs" class="log-container">
-        <small>
-            <table>
+        <table>
+            <thead>
+                <th>User IP</th>
+                <th>User Agent</th>
+                <th>Calculations</th>
+            </thead>
+            <tbody>
             <?php 
 
             $file = fopen("formdata.csv", "r");
@@ -36,8 +41,8 @@
             }
             fclose($file);
             ?>
-            </table>
-        </small>
+            </tbody>
+        </table>
     </main>
     <footer></footer>
 </body>

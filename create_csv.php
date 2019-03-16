@@ -11,21 +11,21 @@ if (isset($_POST["calcdata"])) {
     $userIpAdr = get_ip_address();
     $userAgent = $_SERVER['HTTP_USER_AGENT'];
     
-    
-    $header = "\"User IP\",\"User Agent\", \"Calculations\"\n";
     // The data of the CSV.
     $data   = "\"$userIpAdr\",\"$userAgent\",\"$calculationsComma\"\n";
     
     $fileName = "formdata.csv";
     
     /*
-     * Create or append to CSV file.
+     * Create or prepend to CSV file.
      */
+
     if (file_exists($fileName)) {
         // Add only data. The header is already added in the existing file.
-        file_put_contents($fileName, $data, FILE_APPEND);
+        $fileContents = file_get_contents($fileName);
+        file_put_contents($fileName, $data . $fileContents);
     } else {
         // Add CSV header and data.
-        file_put_contents($fileName, $header . $data);
+        file_put_contents($fileName, $data);
     }
 }
