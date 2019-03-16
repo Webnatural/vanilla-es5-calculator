@@ -238,7 +238,7 @@ WidgetCalculator.controller = function () {
 
             var send = function () {
                 var request = new XMLHttpRequest();
-                request.open('POST', 'create_csv.php', false);
+                request.open('POST', '/server/create_csv.php', false);
 
                 var formData = new FormData();
                 formData.append("calcdata", calcdata.value);
