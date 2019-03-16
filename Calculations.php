@@ -33,7 +33,7 @@
 
             $file = "server/formdata.csv";
 
-            if (file_exists($fileName)) {
+            if (file_exists($file)) {
                 $file = fopen($file, "r");
                 while (($csv = fgetcsv($file)) !== false) {
                         echo "<tr>";
@@ -45,6 +45,7 @@
                 fclose($file);
             } else {
                 echo "<td colspan='3'>No data yet saved</td>";
+            }
             ?>
             </tbody>
         </table>
