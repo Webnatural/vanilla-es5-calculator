@@ -31,15 +31,20 @@
             <tbody>
             <?php 
 
-            $file = fopen("server/formdata.csv", "r");
-            while (($csv = fgetcsv($file)) !== false) {
-                    echo "<tr>";
-                    foreach ($csv as $cell) {
-                            echo "<td>" . htmlspecialchars($cell) . "</td>";
-                    }
-                    echo "</tr>\n";
-            }
-            fclose($file);
+            $file = "server/formdata.csv";
+
+            if (file_exists($fileName)) {
+                $file = fopen($file, "r");
+                while (($csv = fgetcsv($file)) !== false) {
+                        echo "<tr>";
+                        foreach ($csv as $cell) {
+                                echo "<td>" . htmlspecialchars($cell) . "</td>";
+                        }
+                        echo "</tr>\n";
+                }
+                fclose($file);
+            } else {
+                echo "<td colspan='3'>No data yet saved</td>";
             ?>
             </tbody>
         </table>
