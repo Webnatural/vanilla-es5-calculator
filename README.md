@@ -15,11 +15,18 @@ Download to your project directory. To utilize the PHP backend, place the projec
 
 ## Usage
 
-Run index.html in your browser. Input can be made by typing digits from keyboard or interaction with the GUI by a pointer device. 
+Run index.html in your browser. Input can be made by typing digits from keyboard or interaction with the GUI by a pointer device.
 
-To save your calculations history use the Save button or <kbd>Alt</kbd> + <kbd>S</kbd>.
+Operators triggered by keyboard input:
+<kbd>0</kbd> to <kbd>9</kbd> - digits
+<kbd>+</kbd> - addition
+<kbd>-</kbd> - subtraction
+<kbd>*</kbd> - multiplication
+<kbd>/</kbd> - division
 
-Viewing history of Saved calculations from beginning of time, use the ↺ button or <kbd>Alt</kbd> + <kbd>H</kbd>.
+To save your calculations history use the Save button or <kbd>alt</kbd> + <kbd>s</kbd> or <kbd>s</kbd>.
+
+Viewing history of Saved calculations from beginning of time, use the ↺ button or <kbd>alt</kbd> + <kbd>h</kbd>.
 
 ## Support
 
