@@ -11,11 +11,11 @@ Simple flexbox layout calculator app with fallback to table layout. Lightweight 
 
 ## Installation
 
-Download to your project directory. To utilize the PHP backend, place the project on server supporting execution of PHP >= 5.4.
+Download to your project directory. To utilize the PHP backend, place the project on server supporting execution of PHP version 5.4 or newer.
 
 ## Usage
 
-Run index.html in your browser. Input can be made by typing digits from keyboard or interaction with the GUI with pointer devices. 
+Run index.html in your browser. Input can be made by typing digits from keyboard or interaction with the GUI by a pointer device. 
 
 To save your calculations history use the Save button or <kbd>Alt</kbd> + <kbd>S</kbd>.
 
