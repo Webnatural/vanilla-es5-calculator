@@ -37,10 +37,12 @@ WidgetCalculator.model = function() {
         WidgetCalculator.model.result = parseFloat(firstOperand) * parseFloat(secondOperand);
     };
     division = function (firstOperand, secondOperand) {
-        if (secondOperand !== 0) {
+        if (secondOperand != 0) {
             WidgetCalculator.model.result = parseFloat(firstOperand) / parseFloat(secondOperand);
         } else {
-            WidgetCalculator.model.result = "cannot divide by 0";
+            // cannot divide by 0
+            alert("Cannot divide by zero.")
+            WidgetCalculator.model.result = 0;
         }
     };
 

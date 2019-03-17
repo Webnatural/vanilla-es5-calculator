@@ -42,7 +42,6 @@ WidgetCalculator.controller = function () {
         } else {
             if (digit === '0') {
                 // if input is '0', replace it with 0 in view and model
-                console.log(model.currentInput === '0')
                 if (!model.currentInput.length) {
                     model.currentInput = digit;
                     view.updateDisplay();
