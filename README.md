@@ -30,8 +30,8 @@ Viewing history of Saved calculations from beginning of time, use the ↺ button
 
 ## Support
 
-Please [open an issue](https://github.com/Webnatural/itechcalc/issues/new) for support.
+Please [open an issue](https://github.com/Webnatural/vanilla-es5-calculator/issues/new) for support.
 
 ## Contributing
 
-Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and [open a pull request](https://github.com/Webnatural/itechcalc/compare/).
+Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and [open a pull request](https://github.com/Webnatural/vanilla-es5-calculator/compare/).
