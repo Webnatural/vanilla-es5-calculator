@@ -35,3 +35,9 @@ Please [open an issue](https://github.com/Webnatural/vanilla-es5-calculator/issu
 ## Contributing
 
 Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a branch, add commits, and [open a pull request](https://github.com/Webnatural/vanilla-es5-calculator/compare/).
+
+## Todos
+
+* [ ] Handling PHP Errors
+
+* [ ] Fixing CSS for long numbers
